@@ -1,0 +1,16 @@
+version: 1.0
+endpoints:
+  start:
+    enabled: true
+  static:
+    enabled: true
+  stop:
+    enabled: true
+    secret: macilaci
+  list:
+    enabled: true
+    secret: macilaci
+listen:
+   - alias: camera1
+     uri: rtp://192.168.1.64
+     enabled: true
