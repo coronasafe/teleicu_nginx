@@ -28,7 +28,7 @@ services:
       - roverr_rtsp_stream
       - teleicu_middleware
     volumes:   
-      - ./teleicu:/etc/nginx/sites-enabled/teleicu
+      - ./nginx.conf:/etc/nginx/sites-enabled/teleicu
       - ./index.html:/usr/share/nginx/html/test/index.html
     ports:
       - "8081:80"
