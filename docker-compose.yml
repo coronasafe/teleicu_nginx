@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  # roverr_rtsp_stream:
+  roverr_rtsp_stream:
+    image: roverr/rtsp-stream:2
+    container_name: roverr_rtsp_stream
+    ports:
+      - "8080:8080"
+
+  # teleicu_middleware
+  teleicu_middleware:
+    image: ghcr.io/coronasafe/teleicu_middleware/teleicu_middleware:latest
+    container_name: teleicu_middleware
+    depends_on:
+      - roverr_rtsp_stream
+    ports:
+      - "8090:80"
+
+  # proxies requests to internal services
+  reverse-proxy:
+    image: ghcr.io/coronasafe/teleicu_middleware/teleicu_nginx:latest
+    container_name: reverse-proxy
+    depends_on:
+      - roverr_rtsp_stream
+      - teleicu_middleware
+    ports:
+      - "8081:80"
