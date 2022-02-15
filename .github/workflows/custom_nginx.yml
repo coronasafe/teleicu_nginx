@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: teleicu_nginx Image CI
 
 on:
   push:
